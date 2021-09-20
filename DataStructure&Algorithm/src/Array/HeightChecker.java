@@ -10,12 +10,15 @@ public class HeightChecker {
 
 	public static int heightChecker(int[] height) {
 		int n = height.length;
+		
+//		new array to compare with sorted array
 		int expected[] = new int[n];
 
 		for (int i = 0; i < n; i++) {
 			expected[i] = height[i];
 		}
 
+//		selection sort
 		for (int i = 0; i < n; i++) {
 			int min = i;
 
@@ -30,6 +33,7 @@ public class HeightChecker {
 			height[i] = temp;
 		}
 
+//		compare and find wrong index
 		int count = 0;
 		for (int i = 0; i < n; i++) {
 			if (expected[i] != height[i]) {

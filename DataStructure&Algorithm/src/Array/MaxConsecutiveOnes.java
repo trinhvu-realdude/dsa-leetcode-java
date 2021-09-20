@@ -16,9 +16,12 @@ public class MaxConsecutiveOnes {
 		int max = 0;
 
 		for (int i = 0; i < nums.length; i++) {
+//			if element == 0 -> count not running
 			if (nums[i] == 0) {
 				count = 0;
-			} else {
+			}
+//			if element != 0 -> count running and max equals count when count > max
+			else {
 				count++;
 				if (count > max) {
 					max = count;

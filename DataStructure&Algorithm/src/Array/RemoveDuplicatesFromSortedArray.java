@@ -19,6 +19,7 @@ public class RemoveDuplicatesFromSortedArray {
 		int k = 0;
 
 		for (int i = 0; i < n; i++) {
+//			using k pointer to check duplicate and remove
 			if (nums[i] != nums[k]) {
 				k++;
 				nums[k] = nums[i];
