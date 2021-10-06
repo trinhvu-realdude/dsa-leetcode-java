@@ -52,7 +52,7 @@ public class DesignLinkedList {
 		}
 
 		/** Append a node of value val to the last element of the linked list. */
-		public void addAtTail(int val, Node head) {
+		public Node addAtTail(int val, Node head) {
 //			Node lastNode = head;
 //
 //			while (lastNode != null) {
@@ -62,13 +62,18 @@ public class DesignLinkedList {
 //				}
 //				lastNode = lastNode.next;
 //			}
+			Node lastNode = head;
+			Node newNode = new Node(val);
 			
-			Node temp = new Node(val);
-			
-			if (head.next == null) {
-				head.next = temp;
-				temp.next = null;
+			if (head != null) {
+				while (lastNode.next != null) {
+					lastNode = lastNode.next;
+				}
+				lastNode.next = newNode;
+				return head;
 			}
+			
+			return newNode;
 		}
 
 		/**
@@ -78,7 +83,7 @@ public class DesignLinkedList {
 		 * inserted.
 		 */
 		public void addAtIndex(int index, int val) {
-
+			
 		}
 
 		/** Delete the index-th node in the linked list, if the index is valid. */
@@ -126,13 +131,13 @@ public class DesignLinkedList {
 		System.out.print("Linked List: ");
 		myList.printLinkedList(n1);
 		
-		Node headNode = myList.addAtHead(0, n1);
+		n1 = myList.addAtHead(0, n1);
 		System.out.print("New Head: ");
-		myList.printLinkedList(headNode);
+		myList.printLinkedList(n1);
 		
-		myList.addAtTail(4, n3);
+		n1 = myList.addAtTail(4, n1);
 		System.out.print("New Tail: ");
-		myList.printLinkedList(headNode);
+		myList.printLinkedList(n1);
 	}
 
 }
