@@ -47,6 +47,7 @@ public class DesignLinkedList {
 			if (head != null) {
 				temp.next = head;
 			} 
+			
 			return temp;
 		}
 
