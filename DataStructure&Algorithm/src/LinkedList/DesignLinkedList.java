@@ -43,28 +43,19 @@ public class DesignLinkedList {
 		 */
 		public Node addAtHead(int val, Node head) {
 			Node temp = new Node(val);
-			
+
 			if (head != null) {
 				temp.next = head;
-			} 
-			
+			}
+
 			return temp;
 		}
 
 		/** Append a node of value val to the last element of the linked list. */
 		public Node addAtTail(int val, Node head) {
-//			Node lastNode = head;
-//
-//			while (lastNode != null) {
-//				if (lastNode.next == null) {
-//					Node newNode = new Node(val);
-//					lastNode.next = newNode;
-//				}
-//				lastNode = lastNode.next;
-//			}
 			Node lastNode = head;
 			Node newNode = new Node(val);
-			
+
 			if (head != null) {
 				while (lastNode.next != null) {
 					lastNode = lastNode.next;
@@ -72,7 +63,7 @@ public class DesignLinkedList {
 				lastNode.next = newNode;
 				return head;
 			}
-			
+
 			return newNode;
 		}
 
@@ -82,13 +73,46 @@ public class DesignLinkedList {
 		 * linked list. If index is greater than the length, the node will not be
 		 * inserted.
 		 */
-		public void addAtIndex(int index, int val) {
-			
+		public Node addAtIndex(int index, int val, Node head) {
+			Node curNode = head;
+			Node newNode = new Node(val);
+			int count = 0;
+
+			if (index == 0) {
+				return addAtHead(val, head);
+			} else {
+				while (curNode != null) {
+					count++;
+
+					if (count == index) {
+						newNode.next = curNode.next;
+						curNode.next = newNode;
+						break;
+					}
+					curNode = curNode.next;
+				}
+				return head;
+			}
 		}
 
 		/** Delete the index-th node in the linked list, if the index is valid. */
-		public void deleteAtIndex(int index) {
-
+		public Node deleteAtIndex(int index, Node head) {
+			Node curNode = head;
+			Node prevNode = null;
+			int count = 0;
+			
+			if (index != 0) {
+				while (curNode != null) {
+					if (count == index) {
+						prevNode.next = curNode.next;
+					}
+					count++;
+					prevNode = curNode;
+					curNode = curNode.next;
+				}
+				return head;
+			}
+			return curNode.next;
 		}
 
 		/** Print the Linked List */
@@ -113,30 +137,36 @@ public class DesignLinkedList {
 	}
 
 	public static void main(String[] args) {
-//		MyLinkedList obj = new MyLinkedList();
-//		int param_1 = obj.get(1);
-//		obj.addAtHead(1);
-//		obj.addAtTail(3);
-//		obj.addAtIndex(1, 2);
-//		obj.deleteAtIndex(1);
 		Node n1 = new Node(1);
 		Node n2 = new Node(2);
 		Node n3 = new Node(3);
-		
+
 		n1.next = n2;
 		n2.next = n3;
-		
+
 		MyLinkedList myList = new MyLinkedList();
-		
+
 		System.out.print("Linked List: ");
 		myList.printLinkedList(n1);
-		
+
+//		Add at head
 		n1 = myList.addAtHead(0, n1);
 		System.out.print("New Head: ");
 		myList.printLinkedList(n1);
-		
+
+//		Add at tail
 		n1 = myList.addAtTail(4, n1);
 		System.out.print("New Tail: ");
+		myList.printLinkedList(n1);
+
+//		Add at index
+		n1 = myList.addAtIndex(1, 5, n1);
+		System.out.print("New Index: ");
+		myList.printLinkedList(n1);
+		
+//		Delete at index
+		n1 = myList.deleteAtIndex(3, n1);
+		System.out.print("Delete Index: ");
 		myList.printLinkedList(n1);
 	}
 
